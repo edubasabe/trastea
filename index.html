@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generador de Acordes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="card hero">
+        <p class="kicker">Herramienta</p>
+        <h1>Diagrama de acordes desde texto</h1>
+        <p>
+          Pegá un patrón en orden de cuerdas <strong>6 → 1</strong>. Ejemplo:
+          <code>2212xx</code>.
+        </p>
+      </section>
+
+      <section class="card controls">
+        <form id="chord-form" novalidate>
+          <label for="pattern-input">Input del acorde</label>
+          <div class="input-row">
+            <input
+              id="pattern-input"
+              name="pattern"
+              type="text"
+              inputmode="text"
+              autocomplete="off"
+              value="2212xx"
+              aria-describedby="pattern-help"
+            />
+            <button type="submit">Generar</button>
+          </div>
+          <p id="pattern-help" class="help">
+            Formato: <code>2212xx</code> o <code>2 2 1 2 x x</code>.
+            <code>x</code> = no se toca, <code>0</code> = al aire.
+          </p>
+        </form>
+
+        <div class="preset-row" aria-label="Patrones de ejemplo">
+          <button class="preset" data-pattern="2212xx" type="button">2212xx</button>
+          <button class="preset" data-pattern="x32010" type="button">x32010</button>
+          <button class="preset" data-pattern="022100" type="button">022100</button>
+        </div>
+
+        <p id="error-msg" role="alert" aria-live="polite"></p>
+      </section>
+
+      <section class="card viewer">
+        <canvas id="chord-canvas" width="380" height="520"></canvas>
+      </section>
+
+      <section class="card mapping">
+        <h2>Lectura del input (6 → 1)</h2>
+        <ol id="mapping-list"></ol>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
